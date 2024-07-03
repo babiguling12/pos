@@ -10,8 +10,8 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE use
 
 if (isset($user['password'])) {
     $hashed_password = $user['password'];
-    $verify = md5($password);
-    if ($verify == $hashed_password) {
+    $verify = password_verify($password, $hashed_password);
+    if ($verify) {
         $_SESSION['username'] = $username;
         $_SESSION['status'] = "login";
         header("location: index.php");
