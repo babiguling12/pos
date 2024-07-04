@@ -1,5 +1,7 @@
 <?php
 include '../include/include.php';
+
+$data = mysqli_query($conn, "SELECT * FROM pelanggan");
 ?>
 
 <!DOCTYPE html>
@@ -72,12 +74,17 @@ include '../include/include.php';
                   </tr>
                 </thead>
                 <tbody>
+                  <?php 
+                  $no = 0;
+                  foreach ($data as $pelanggan) : ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>G035T00</td>
-                    <td>5102030405060078</td>
-                    <td>Bali, Indonesia</td>
-                    <td>0812345678910</td>
+                    <th scope="row"><?= ++$no ?></th>
+                    <td><?= $pelanggan['nama_member'] ?></td>
+                    <td><?= $pelanggan['nik'] ?></td>
+                    <td><?= $pelanggan['alamat'] ?></td>
+                    <td><?= $pelanggan['nohp'] ?></td>
+                  </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
               <div class="row">
@@ -119,28 +126,40 @@ include '../include/include.php';
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="" method="post" id="tambahpelanggan">
+            <form class="needs-validation" action="../process/tambah.php" method="post" id="tambahpelanggan" novalidate>
               <div class="mb-3">
                 <label for="namamember" class="form-label">Nama Member</label>
-                <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun">
+                <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun" required>
+                <div class="invalid-feedback">
+                  Nama tidak boleh kosong.
+                </div>
               </div>
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control" id="nik" name="nik" placeholder="5102030405060007" minlength="16" maxlength="16">
+                <input type="text" class="form-control" id="nik" name="nik" placeholder="5102030405060007" minlength="16" maxlength="16" required>
+                <div class="invalid-feedback">
+                  NIK harus memiliki panjang 16 angka.
+                </div>
               </div>
               <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Denpasar, Bali">
+                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Denpasar, Bali" required>
+                <div class="invalid-feedback">
+                  Alamat tidak boleh kosong.
+                </div>
               </div>
               <div class="mb-3">
                 <label for="nohp" class="form-label">No Hp</label>
-                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="081*********">
+                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="081*********" required>
+                <div class="invalid-feedback">
+                  Nomor HP tidak boleh kosong.
+                </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="tambahpelanggan">Tambah</button>
+            <button type="submit" class="btn btn-primary" name="tambahpelanggan" form="tambahpelanggan">Tambah</button>
           </div>
         </div>
       </div>
@@ -156,6 +175,7 @@ include '../include/include.php';
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <!-- Form Validation -->
   <script>
     const header = document.querySelector('header.header');
 
@@ -164,6 +184,23 @@ include '../include/include.php';
         header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
       }
     });
+  </script>
+  <script>
+    (function() {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms)
+        .forEach(function(form) {
+          form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
   </script>
   <script>
   </script>
