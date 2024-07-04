@@ -2,13 +2,7 @@
 include '../include/include.php';
 ?>
 
-<!DOCTYPE html><!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v5.0.0
-* @link https://coreui.io/product/free-bootstrap-admin-template/
-* Copyright (c) 2024 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
--->
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <base href="./">
@@ -18,7 +12,7 @@ include '../include/include.php';
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title>Dashboard | Toko</title>
     <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicon/apple-icon-72x72.png">
@@ -41,171 +35,23 @@ include '../include/include.php';
     <link rel="stylesheet" href="../css/vendors/simplebar.css">
     <!-- Main styles for this application-->
     <link href="../css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="../css/examples.css" rel="stylesheet">
-    <!-- We use those styles to style Carbon ads and CoreUI PRO banner, you should remove them in your application.-->
-    <link href="../css/ads.css" rel="stylesheet">
+    
     <script src="../js/config.js"></script>
     <script src="../js/color-modes.js"></script>
     <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
   </head>
   <body>
-    <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
-      <div class="sidebar-header border-bottom">
-        <div class="sidebar-brand">
-          <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
-            <use xlink:href="../assets/brand/coreui.svg#full"></use>
-          </svg>
-          <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-            <use xlink:href="../assets/brand/coreui.svg#signet"></use>
-          </svg>
-        </div>
-        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
-      </div>
-      <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link active" href="index.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-            </svg> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pelanggan.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-address-book"></use>
-            </svg> Pelanggan</a></li>
-        <li class="nav-item"><a class="nav-link" href="pelanggan.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> Pengguna</a></li>
-        <li class="nav-title">Produk</li>
-        <li class="nav-item"><a class="nav-link" href="produk.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-window-maximize"></use>
-            </svg> Produk</a></li>
-        <li class="nav-item"><a class="nav-link" href="stok.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-window-restore"></use>
-            </svg> Stok</a></li>
-        <li class="nav-title">Transaksi</li>
-        <li class="nav-item"><a class="nav-link" href="transaksi.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-cart"></use>
-            </svg> Transaksi</a></li>
-        <li class="nav-item"><a class="nav-link" href="laporantransaksi.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-history"></use>
-            </svg> Riwayat Transaksi</a></li>
-      </ul>
-      <div class="sidebar-footer border-top d-none d-md-flex">
-        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
-      </div>
-    </div>
+  
+  <?php
+  include '../components/sidebar.php';
+  ?>
+
     <div class="wrapper d-flex flex-column min-vh-100">
-      <header class="header header-sticky p-0 mb-4">
-        <div class="container-fluid border-bottom px-4">
-          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
-            <svg class="icon icon-lg">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
-            </svg>
-          </button>
-          <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-          </ul>
-          <ul class="header-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#">
-                <svg class="icon icon-lg">
-                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg></a></li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                <svg class="icon icon-lg">
-                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                </svg></a></li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                <svg class="icon icon-lg">
-                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg></a></li>
-          </ul>
-          <ul class="header-nav">
-            <li class="nav-item py-1">
-              <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
-            </li>
-            <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
-                <svg class="icon icon-lg theme-icon-active">
-                  <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
-                </svg>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
-                <li>
-                  <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="light">
-                    <svg class="icon icon-lg me-3">
-                      <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-sun"></use>
-                    </svg>Light
-                  </button>
-                </li>
-                <li>
-                  <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="dark">
-                    <svg class="icon icon-lg me-3">
-                      <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-moon"></use>
-                    </svg>Dark
-                  </button>
-                </li>
-                <li>
-                  <button class="dropdown-item d-flex align-items-center active" type="button" data-coreui-theme-value="auto">
-                    <svg class="icon icon-lg me-3">
-                      <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
-                    </svg>Auto
-                  </button>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item py-1">
-              <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
-            </li>
-            <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="avatar avatar-md"><img class="avatar-img" src="../assets/img/avatars/8.jpg" alt="user@email.com"></div>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end pt-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">Account</div><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                  </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                  </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-                  </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-                  </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold my-2">
-                  <div class="fw-semibold">Settings</div>
-                </div><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                  </svg> Profile</a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Settings</a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                  </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                  </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                  </svg> Lock Account</a><a class="dropdown-item" href="../auth/logout.php">
-                  <svg class="icon me-2">
-                    <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Logout</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </header>
+      
+  <?php
+  include '../components/header.php';
+  ?>
+
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
           <div class="row g-4 mb-4">
@@ -615,6 +461,9 @@ include '../include/include.php';
           </div>
           <!-- /.row-->
         </div>
+      
+      
+      
       </div>
       <footer class="footer px-4">
         <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024 creativeLabs.</div>
