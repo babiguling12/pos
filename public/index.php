@@ -297,16 +297,6 @@ include '../include/include.php';
             </li>
           </ul>
         </div>
-        <div class="container-fluid px-4">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0">
-              <li class="breadcrumb-item"><a href="#">Home</a>
-              </li>
-              <li class="breadcrumb-item active"><span>Dashboard</span>
-              </li>
-            </ol>
-          </nav>
-        </div>
       </header>
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
@@ -419,21 +409,6 @@ include '../include/include.php';
                 <div>
                   <h4 class="card-title mb-0">Traffic</h4>
                   <div class="small text-body-secondary">January - July 2023</div>
-                </div>
-                <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
-                  <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
-                    <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
-                    <label class="btn btn-outline-secondary"> Day</label>
-                    <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
-                    <label class="btn btn-outline-secondary active"> Month</label>
-                    <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
-                    <label class="btn btn-outline-secondary"> Year</label>
-                  </div>
-                  <button class="btn btn-primary" type="button">
-                    <svg class="icon">
-                      <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
-                    </svg>
-                  </button>
                 </div>
               </div>
               <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
