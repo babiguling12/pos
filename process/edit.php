@@ -35,8 +35,8 @@ function editpembeli($data) {
 
 function editpengguna($data) {
     global $conn;
-    $id     = htmlspecialchars($data['id_pengguna']);
-    $username   = htmlspecialchars($data['username']);
+    $id = htmlspecialchars($data['id_pengguna']);
+    $username = htmlspecialchars($data['user_name']);
     $password   = htmlspecialchars($data['password']);
     $nama = htmlspecialchars($data['nama_pengguna']);
     $jabatan  = htmlspecialchars($data['jabatan']);
@@ -44,7 +44,7 @@ function editpengguna($data) {
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query  = "UPDATE pembeli SET user_name = '$username', password = '$password', nama_pengguna = '$nama', jabatan = '$jabatan', nohp_pengguna = '$nohp' WHERE id_member = $id";
+    $query  = "UPDATE pengguna SET user_name = '$username', password = '$password', nama_pengguna = '$nama', jabatan = '$jabatan', nohp_pengguna = '$nohp' WHERE id_pengguna = $id";
 
     mysqli_query($conn, $query);
 

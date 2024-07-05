@@ -214,7 +214,7 @@ include '../include/include.php';
           </div>
           <div class="modal-body">
             <form class="needs-validation" action="../process/edit.php" method="post" id="editpengguna" novalidate>
-              <input type="hidden" name="idmember" readonly value="<?php if (isset($dataedit))
+              <input type="hidden" name="id_pengguna" readonly value="<?php if (isset($dataedit))
                 echo $dataedit['id_pengguna'] ?>">
                 <div class="mb-3">
                   <label for="user_name" class="form-label">Username</label>
