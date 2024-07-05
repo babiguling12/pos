@@ -53,7 +53,7 @@ include '../include/include.php';
 
     echo "<script>
     $(document).ready(function(){
-    $('#editpengguna').modal('show');
+    $('#edit').modal('show');
     });
     </script>";
   }
@@ -243,8 +243,11 @@ include '../include/include.php';
                   </div>
                   <div class="mb-3">
                     <label for="jabatan" class="form-label">Jabatan</label>
-                    <select class="form-select" aria-label="Default select example" id="jabatan" name="jabatan" required>
-                      <option value="" <?= $jabatan == '' ? 'selected' : '' ?>>Pilih Jabatan</option>
+                    <?php
+                      $jabatan = isset($dataedit['jabatan']) ? $dataedit['jabatan'] : '';
+                    ?>
+                  <select class="form-select" aria-label="Default select example" id="jabatan" name="jabatan" required>
+                    <option value="" <?= $jabatan == '' ? 'selected' : '' ?>>Pilih Jabatan</option>
                     <option value="admin" <?= $jabatan == 'admin' ? 'selected' : '' ?>>Admin</option>
                     <option value="umum" <?= $jabatan == 'umum' ? 'selected' : '' ?>>Umum</option>
                   </select>
@@ -254,8 +257,8 @@ include '../include/include.php';
                 </div>
                 <div class="mb-3">
                   <label for="nohp_pengguna" class="form-label">No Hp</label>
-                  <input type="text" class="form-control" id="nohp_pengguna" name="nohp_pengguna" placeholder="081*********" required
-                    value="<?php if (isset($dataedit))
+                  <input type="text" class="form-control" id="nohp_pengguna" name="nohp_pengguna"
+                    placeholder="081*********" required value="<?php if (isset($dataedit))
                       echo $dataedit['nohp_pengguna'] ?>">
                     <div class="invalid-feedback">
                       Nomor HP tidak boleh kosong.
