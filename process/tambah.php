@@ -13,6 +13,7 @@ if(isset($_POST['tambahpengguna'])) tambahpengguna($_POST);
 
 
 
+
 // FUNCTION OON
 
 function tambahpembeli($data) {
@@ -35,6 +36,7 @@ function tambahpembeli($data) {
 
 function tambahpengguna($data) {
     global $conn;
+
     $username = htmlspecialchars($data['user_name']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $nama = htmlspecialchars($data['nama_pengguna']);
@@ -44,6 +46,16 @@ function tambahpengguna($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     $query  = "INSERT INTO pengguna VALUES (NULL, '$username', '$password', '$nama', '$jabatan', '$nohp')";
+
+    $username   = htmlspecialchars($data['user_name']);
+    $password        = htmlspecialchars($data['password']);
+    $nama       = htmlspecialchars($data['nama_pengguna']);
+    $jabatan     = htmlspecialchars($data['jabatan']);
+    $nomor      = htmlspecialchars($data['nohp_pengguna']);
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $query  = "INSERT INTO pengguna VALUES (NULL, '$username', '$password', '$nama', '$jabatan', '$nomor')";
 
     mysqli_query($conn, $query);
 
