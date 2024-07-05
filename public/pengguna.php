@@ -10,9 +10,6 @@ include '../include/include.php';
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-  <meta name="author" content="Łukasz Holeczek">
-  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
   <title>Pengguna | Toko</title>
   <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicon/apple-icon-60x60.png">
@@ -33,27 +30,30 @@ include '../include/include.php';
   <meta name="theme-color" content="#ffffff">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 </head>
 
 <body>
 
+  <!-- table start -->
   <?php
   $data = mysqli_query($conn, "SELECT * FROM pengguna");
 
   if (isset($_GET['editpengguna'])) {
     $id = $_GET['editpengguna'];
-    $dataedit = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE id_user = $id"));
+    $dataedit = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna = $id"));
 
     echo "<script>
     $(document).ready(function(){
-    $('#edit').modal('show');
+    $('#editpengguna').modal('show');
     });
     </script>";
   }
@@ -69,6 +69,7 @@ include '../include/include.php';
     include '../components/header.php';
     ?>
 
+
     <div class="body flex-grow-1">
       <div class="container-lg px-4">
         <div class="card mb-4">
@@ -80,7 +81,7 @@ include '../include/include.php';
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nama</th>
+                    <th scope="col">Nama Pengguna</th>
                     <th scope="col">Jabatan</th>
                     <th scope="col">No. HP</th>
                     <th scope="col"></th>
@@ -96,7 +97,8 @@ include '../include/include.php';
                       <td><?= $pengguna['jabatan'] ?></td>
                       <td><?= $pengguna['nohp_pengguna'] ?></td>
                       <td>
-                        <a class="btn btn-sm btn-warning" href="pengguna.php?editpengguna=<?= $pengguna['id_pengguna'] ?>"><i
+                        <a class="btn btn-sm btn-warning"
+                          href="pengguna.php?editpengguna=<?= $pengguna['id_pengguna'] ?>"><i
                             class="icon icon-l cil-pencil"></i></a>
                         <a class="btn btn-sm btn-danger"
                           href="../process/hapus.php?s=pengguna&id=<?= $pengguna['id_pengguna'] ?>"
@@ -147,18 +149,18 @@ include '../include/include.php';
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="needs-validation" action="../process_pengguna/tambahpengguna.php" method="post" id="tambahpengguna" novalidate>
+            <form class="needs-validation" action="../process/tambah.php" method="post" id="tambahpengguna" novalidate>
               <div class="mb-3">
                 <label for="user_name" class="form-label">Username</label>
-                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Masukan Username..."
-                  required>
+                <input type="text" class="form-control" id="user_name" name="user_name"
+                  placeholder="Masukan Username..." required>
                 <div class="invalid-feedback">
                   Username tidak boleh kosong.
                 </div>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="xxxxxxx"
+                <input type="password" class="form-control" id="password" name="password" placeholder="xxxxxxxxxx"
                   minlength="8" maxlength="12" required>
                 <div class="invalid-feedback">
                   Password harus memiliki panjang 8 - 12 karakter.
@@ -167,27 +169,28 @@ include '../include/include.php';
               <div class="mb-3">
                 <label for="nama_pengguna" class="form-label">Nama Pengguna</label>
                 <input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna"
-                  placeholder="Masukan nama..." required>
+                  placeholder="Masukan Nama..." required>
                 <div class="invalid-feedback">
                   Nama tidak boleh kosong.
                 </div>
               </div>
               <div class="mb-3">
-                <label for="jabatan" class="form-label">Jabatan</label>
+                <label for="Jabatan" class="form-label">Jabatan</label>
                 <select class="form-select" aria-label="Default select example" id="jabatan" name="jabatan">
                   <option selected>Pilih Jabatan</option>
                   <option value="admin">Admin</option>
                   <option value="umum">Umum</option>
                 </select>
                 <div class="invalid-feedback">
-                  Harus pilih salah satu
+                  Jabatan tidak boleh kosong.
                 </div>
               </div>
               <div class="mb-3">
-                <label for="nohp_pengguna" class="form-label">No Hp</label>
-                <input type="text" class="form-control" id="nohp_pengguna" name="nohp_pengguna" placeholder="081*********" required>
+                <label for="nohp_pengguna" class="form-label">No HP</label>
+                <input type="text" class="form-control" id="nohp_pengguna" name="nohp_pengguna"
+                  placeholder="Masukan No HP..." required>
                 <div class="invalid-feedback">
-                  Nomor HP tidak boleh kosong.
+                  No HP tidak boleh kosong.
                 </div>
               </div>
             </form>
@@ -210,56 +213,54 @@ include '../include/include.php';
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="needs-validation" action="../process/editpengguna.php" method="post" id="editpengguna" novalidate>
-              <input type="hidden" name="id_user" readonly
-                value="<?php if (isset($dataedit))
-                  echo $dataedit['id_pengguna'] ?>">
+            <form class="needs-validation" action="../process/edit.php" method="post" id="editpengguna" novalidate>
+              <input type="hidden" name="idmember" readonly value="<?php if (isset($dataedit))
+                echo $dataedit['id_pengguna'] ?>">
                 <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username..." required
-                    value="<?php if (isset($dataedit))
-                  echo $dataedit['user_name'] ?>">
+                  <label for="user_name" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="user_name" name="user_name"
+                    placeholder="Masukan Username..." required value="<?php if (isset($dataedit))
+                echo $dataedit['user_name'] ?>">
                   <div class="invalid-feedback">
                     Username tidak boleh kosong.
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="form-label"></label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="xxxxxxxx"
-                    minlength="8" maxlength="12" required value="<?php if (isset($dataedit))
-                  echo $dataedit['password'] ?>">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="xxxxxxxxxx"
+                    minlength="8" maxlength="12" required>
                   <div class="invalid-feedback">
-                  Password harus memiliki panjang 8 - 12 karakter.
+                    Password harus memiliki panjang 8 - 12 karakter.
                   </div>
-                </div>
-                <div class="mb-3">
-                  <label for="nama_pengguna" class="form-label">Nama Pengguna</label>
-                  <input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna" placeholder="081*********" required
-                    value="<?php if (isset($dataedit))
-                  echo $dataedit['nama_pengguna'] ?>">
-                  <div class="invalid-feedback">
-                    Nama tidak boleh kosong.
+                  <div class="mb-3">
+                    <label for="nama_pengguna" class="form-label">Nama Pengguna</label>
+                    <input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna"
+                      placeholder="Masukan Nama..." required value="<?php if (isset($dataedit))
+                echo $dataedit['nama_pengguna'] ?>">
+                    <div class="invalid-feedback">
+                      Nama Pengguna tidak boleh kosong.
+                    </div>
                   </div>
-                <div class="mb-3">
-                  <label for="jabatan" class="form-label">Jabatan</label>
-                  <select class="form-select" aria-label="Default select example" id="jabatan" name="jabatan">
-                  <option selected>Pilih Jabatan</option>
-                  <option value="admin">Admin</option>
-                  <option value="umum">Umum</option>
-                </select>>
+                  <div class="mb-3">
+                    <label for="jabatan" class="form-label">Jabatan</label>
+                    <select class="form-select" aria-label="Default select example" id="jabatan" name="jabatan" required>
+                      <option value="" <?= $jabatan == '' ? 'selected' : '' ?>>Pilih Jabatan</option>
+                    <option value="admin" <?= $jabatan == 'admin' ? 'selected' : '' ?>>Admin</option>
+                    <option value="umum" <?= $jabatan == 'umum' ? 'selected' : '' ?>>Umum</option>
+                  </select>
                   <div class="invalid-feedback">
-                    Jabatan tidak boleh kosong.
+                    Harus pilih salah satu.
                   </div>
                 </div>
                 <div class="mb-3">
                   <label for="nohp_pengguna" class="form-label">No Hp</label>
                   <input type="text" class="form-control" id="nohp_pengguna" name="nohp_pengguna" placeholder="081*********" required
                     value="<?php if (isset($dataedit))
-                  echo $dataedit['nohp_pengguna'] ?>">
-                  <div class="invalid-feedback">
-                    Nomor HP tidak boleh kosong.
+                      echo $dataedit['nohp_pengguna'] ?>">
+                    <div class="invalid-feedback">
+                      Nomor HP tidak boleh kosong.
+                    </div>
                   </div>
-                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -271,8 +272,6 @@ include '../include/include.php';
       </div>
       <!-- Modal Edit End -->
 
-
-
     </div>
     <footer class="footer px-4">
       <div><a href="https://coreui.io">CoreUI </a><a
@@ -283,7 +282,9 @@ include '../include/include.php';
     </div>
     <!-- CoreUI and necessary plugins-->
     <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+    <!-- Form Validation -->
     <script>
       const header = document.querySelector('header.header');
 
@@ -309,6 +310,11 @@ include '../include/include.php';
             }, false)
           })
       })()
+    </script>
+    <script>
+
+    </script>
+    <script>
     </script>
 
   </body>
