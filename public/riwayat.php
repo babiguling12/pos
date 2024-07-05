@@ -33,12 +33,14 @@ include '../include/include.php';
   <meta name="theme-color" content="#ffffff">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
-  <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -64,6 +66,7 @@ include '../include/include.php';
   </div>
   <!-- CoreUI and necessary plugins-->
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+  <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
   <script>
     const header = document.querySelector('header.header');

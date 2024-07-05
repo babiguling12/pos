@@ -33,13 +33,14 @@ include '../include/include.php';
   <meta name="theme-color" content="#ffffff">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
+  <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -147,7 +148,7 @@ include '../include/include.php';
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="needs-validation" action="../process_pengguna/tambahpengguna.php" method="post" id="tambahpengguna" novalidate>
+            <form class="needs-validation" action="../process/tambah.php" method="post" id="tambahpengguna" novalidate>
               <div class="mb-3">
                 <label for="user_name" class="form-label">Username</label>
                 <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Masukan Username..."
@@ -210,7 +211,7 @@ include '../include/include.php';
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="needs-validation" action="../process/editpengguna.php" method="post" id="editpengguna" novalidate>
+            <form class="needs-validation" action="../process/edit.php" method="post" id="editpengguna" novalidate>
               <input type="hidden" name="id_user" readonly
                 value="<?php if (isset($dataedit))
                   echo $dataedit['id_pengguna'] ?>">
@@ -283,6 +284,7 @@ include '../include/include.php';
     </div>
     <!-- CoreUI and necessary plugins-->
     <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../vendors/simplebar/js/simplebar.min.js"></script>
     <script>
       const header = document.querySelector('header.header');

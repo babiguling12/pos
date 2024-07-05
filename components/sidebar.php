@@ -18,7 +18,7 @@
         <li class="nav-item"><a class="nav-link" href="pembeli.php">
             <svg class="nav-icon">
               <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-address-book"></use>
-            </svg> pembeli</a></li>
+            </svg> Pembeli</a></li>
         <li class="nav-item"><a class="nav-link" href="pengguna.php">
             <svg class="nav-icon">
               <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user"></use>
