@@ -96,7 +96,7 @@ include '../include/include.php';
                       <td><?= $pengguna['jabatan'] ?></td>
                       <td><?= $pengguna['nohp_pengguna'] ?></td>
                       <td>
-                        <a class="btn btn-sm btn-warning" href="../process_pengguna/editpengguna.php?editpengguna=<?= $pengguna['id_pengguna'] ?>"><i
+                        <a class="btn btn-sm btn-warning" href="pengguna.php?editpengguna=<?= $pengguna['id_pengguna'] ?>"><i
                             class="icon icon-l cil-pencil"></i></a>
                         <a class="btn btn-sm btn-danger"
                           href="../process/hapus.php?s=pengguna&id=<?= $pengguna['id_pengguna'] ?>"
