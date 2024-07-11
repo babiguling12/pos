@@ -156,7 +156,7 @@ include '../include/include.php';
                   placeholder="Masukan Username..." required>
                 <div class="invalid-feedback">
                   Username tidak boleh kosong.
-                </div>
+                </div> 
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -222,7 +222,7 @@ include '../include/include.php';
                     placeholder="Masukan Username..." required value="<?php if (isset($dataedit))
                 echo $dataedit['user_name'] ?>">
                   <div class="invalid-feedback">
-                    Username tidak boleh kosong.
+                    Username tidak boleh kosong. 
                   </div>
                 </div>
                 <div class="mb-3">
