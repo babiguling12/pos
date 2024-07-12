@@ -57,8 +57,8 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
             <div class="card col-md-5 text-white bg-primary py-5">
               <div class="card-body text-center">
                 <div>
-                  <h2>Toko Edi</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <h2>Toko Store</h2>
+                  <p>Menjual berbagai alat kebutuhan sehari hari. Murah, Berkualitas, dan Nyaman Digunakan</p>
                 </div>
               </div>
             </div>
