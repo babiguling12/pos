@@ -1,0 +1,5 @@
+function tambah() {
+    $.ajax({
+        url: 
+    })
+}

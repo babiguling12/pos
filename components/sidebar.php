@@ -28,10 +28,6 @@
             <svg class="nav-icon">
               <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-window-maximize"></use>
             </svg> Produk</a></li>
-        <li class="nav-item"><a class="nav-link" href="stok.php">
-            <svg class="nav-icon">
-              <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-window-restore"></use>
-            </svg> Stok</a></li>
         <li class="nav-title">Transaksi</li>
         <li class="nav-item"><a class="nav-link" href="transaksi.php">
             <svg class="nav-icon">

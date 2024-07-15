@@ -2,9 +2,12 @@
 
 include '../include/include.php';
 
-if(isset($_POST['tambahpembeli'])) tambahpembeli($_POST);
+
+if(isset($_POST['pembeli'])) tambahpembeli($_POST);
 
 if(isset($_POST['tambahpengguna'])) tambahpengguna($_POST);
+
+if(isset($_POST['tambahproduk'])) tambahproduk($_POST);
 
 
 
@@ -24,13 +27,11 @@ function tambahpembeli($data) {
     $nomor  = htmlspecialchars($data['nohp']);
 
     $query  = "INSERT INTO pembeli VALUES (NULL, '$nama', '$nik', '$alamat', '$nomor')";
-
+    
     mysqli_query($conn, $query);
 
     if(!mysqli_errno($conn)) {
-        header("Location: ../public/pembeli.php");
-    } else {
-        header("Location: ../public/pembeli.php?err=1");
+        echo json_encode('success');
     }
 }
 

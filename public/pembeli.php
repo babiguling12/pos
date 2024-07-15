@@ -32,31 +32,21 @@ include '../include/include.php';
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
   <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
   <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- table start -->
-  <?php
-  $data = mysqli_query($conn, "SELECT * FROM pembeli");
-
-  if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $dataedit = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pembeli WHERE id_member = $id"));
-
-    echo "<script>
-    $(document).ready(function(){
-    $('#edit').modal('show');
-    });
-    </script>";
-  }
-  ?>
+  <!-- table start -->
 
   <?php
   include '../components/sidebar.php';
@@ -72,62 +62,22 @@ include '../include/include.php';
     <div class="body flex-grow-1">
       <div class="container-lg px-4">
         <div class="card mb-4">
-          <div class="card-header"><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data</button></div>
+          <div class="card-header"><button class="btn btn-primary" type="button" id="btntambah" data-bs-toggle="modal" data-bs-target="#modal">Tambah Data</button></div>
           <div class="card-body">
             <div class="tab-pane p-3 active preview" role="tabpanel">
-              <table class="table">
+              <table class="table w-100 table-hover text-start" id="tabelpembeli">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">NIK</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">No. HP</th>
-                    <th scope="col"></th>
+                    <th>#</th>
+                    <th>Nama</th>
+                    <th>NIK</th>
+                    <th>Alamat</th>
+                    <th>No. HP</th>
+                    <th></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <?php
-                  $no = 0;
-                  foreach ($data as $pembeli) : ?>
-                    <tr>
-                      <th scope="row"><?= ++$no ?></th>
-                      <td><?= $pembeli['nama_member'] ?></td>
-                      <td><?= $pembeli['nik'] ?></td>
-                      <td><?= $pembeli['alamat'] ?></td>
-                      <td><?= $pembeli['nohp'] ?></td>
-                      <td>
-                        <a class="btn btn-sm btn-warning" href="pembeli.php?edit=<?= $pembeli['id_member'] ?>"><i class="icon icon-l cil-pencil"></i></a>
-                        <a class="btn btn-sm btn-danger" href="../process/hapus.php?s=pembeli&id=<?= $pembeli['id_member'] ?>" onclick="return confirm('Hapus data?')"><i class="icon icon-l cil-trash"></i></a>
-                      </td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
+
               </table>
-              <div class="row">
-                <div class="col-sm-12 col-md-5">
-                  <div class="dataTables_info" id="supplier_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div>
-                </div>
-                <div class="col-sm-12 col-md-7">
-                  <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-end">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -136,103 +86,42 @@ include '../include/include.php';
     <!-- table end -->
 
     <!-- Modal Tambah Start -->
-    <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5">Tambah Data</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form class="needs-validation" action="../process/tambah.php" method="post" id="tambahpembeli" novalidate>
+          <form class="needs-validation" id="formpembeli" novalidate>
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Tambah Data</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="idmember" name="idmember" readonly>
               <div class="mb-3">
                 <label for="namamember" class="form-label">Nama Member</label>
                 <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun" required>
-                <div class="invalid-feedback">
-                  Nama tidak boleh kosong.
-                </div>
               </div>
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control" id="nik" name="nik" placeholder="5102030405060007" minlength="16" maxlength="16" required>
-                <div class="invalid-feedback">
-                  NIK harus memiliki panjang 16 angka.
-                </div>
+                <input type="text" class="form-control" id="nik" name="nik" placeholder="510*************" maxlength="16">
               </div>
               <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Denpasar, Bali" required>
-                <div class="invalid-feedback">
-                  Alamat tidak boleh kosong.
-                </div>
+                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Denpasar, Bali">
               </div>
               <div class="mb-3">
                 <label for="nohp" class="form-label">No Hp</label>
-                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="081*********" required>
-                <div class="invalid-feedback">
-                  Nomor HP tidak boleh kosong.
-                </div>
+                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="081*********">
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="tambahpembeli" form="tambahpembeli">Tambah</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" name="pembeli">Tambah</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <!-- Modal Tambah End -->
-
-    <!-- Modal Edit -->
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5">Edit Data</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form class="needs-validation" action="../process/edit.php" method="post" id="editpembeli" novalidate>
-              <input type="hidden" name="idmember" readonly value="<?php if (isset($dataedit)) echo $dataedit['id_member'] ?>">
-              <div class="mb-3">
-                <label for="namamember" class="form-label">Nama Member</label>
-                <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun" required value="<?php if (isset($dataedit)) echo $dataedit['nama_member'] ?>">
-                <div class="invalid-feedback">
-                  Nama tidak boleh kosong.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control" id="nik" name="nik" placeholder="5102030405060007" minlength="16" maxlength="16" required value="<?php if (isset($dataedit)) echo $dataedit['nik'] ?>">
-                <div class="invalid-feedback">
-                  NIK harus memiliki panjang 16 angka.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Denpasar, Bali" required value="<?php if (isset($dataedit)) echo $dataedit['alamat'] ?>">
-                <div class="invalid-feedback">
-                  Alamat tidak boleh kosong.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="nohp" class="form-label">No Hp</label>
-                <input type="text" class="form-control" id="nohp" name="nohp" placeholder="081*********" required value="<?php if (isset($dataedit)) echo $dataedit['nohp'] ?>">
-                <div class="invalid-feedback">
-                  Nomor HP tidak boleh kosong.
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="editpembeli" form="editpembeli">Simpan</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal Edit End -->
 
   </div>
   <footer class="footer px-4">
@@ -244,6 +133,7 @@ include '../include/include.php';
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <script src="../js/pembeli.js"></script>
   <!-- Form Validation -->
   <script>
     const header = document.querySelector('header.header');
@@ -253,26 +143,6 @@ include '../include/include.php';
         header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
       }
     });
-  </script>
-  <script>
-    (function() {
-      'use strict'
-      const forms = document.querySelectorAll('.needs-validation')
-      Array.from(forms)
-        .forEach(function(form) {
-          form.addEventListener('submit', function(event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-          }, false)
-        })
-    })()
-  </script>
-  <script>
-
   </script>
   <script>
   </script>

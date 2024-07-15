@@ -2,7 +2,7 @@
 
 include '../include/include.php';
 
-if(isset($_GET['s']) && $_GET['s'] === 'pembeli') hapuspembeli($_GET['id']);
+if(isset($_POST['pembeli'])) hapuspembeli($_POST['pembeli']);
 
 if(isset($_GET['s']) && $_GET['s'] === 'pengguna') hapuspengguna($_GET['id']);
 
@@ -24,9 +24,7 @@ function hapuspembeli($id) {
     mysqli_query($conn, $query);
 
     if(!mysqli_errno($conn)) {
-        header("Location: ../public/pembeli.php");
-    } else {
-        header("Location: ../public/pembeli.php?err=1");
+        echo json_encode('success');
     }
 }
 

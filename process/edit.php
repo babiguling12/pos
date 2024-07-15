@@ -2,7 +2,7 @@
 
 include '../include/include.php';
 
-if(isset($_POST['editpembeli'])) editpembeli($_POST);
+if(isset($_POST['pembeli'])) editpembeli($_POST);
 
 if(isset($_POST['editpengguna'])) editpengguna($_POST);
 
@@ -27,9 +27,7 @@ function editpembeli($data) {
     mysqli_query($conn, $query);
 
     if(!mysqli_errno($conn)) {
-        header("Location: ../public/pembeli.php");
-    } else {
-        header("Location: ../public/pembeli.php?err=1");
+        echo json_encode('success');
     }
 }
 
