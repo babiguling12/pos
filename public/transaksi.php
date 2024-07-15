@@ -41,7 +41,24 @@ include '../include/include.php';
   <script src="../js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
+  <style>
+    .card-input-element {
+      display: none;
+    }
+
+    .card-input:hover {
+      cursor: pointer;
+    }
+
+    .card-input-element:checked + .card-input {
+      border: 1px solid #3d933f;
+    }
+  </style>
 </head>
+
+<?php
+$data = (mysqli_query($conn, "SELECT * FROM produk"));
+?>
 
 <body>
 
@@ -56,6 +73,73 @@ include '../include/include.php';
     ?>
 
 
+    <div class="body flex-grow-1">
+      <div class="container-lg px-4">
+        <div class="card mb-4">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <p class="h5">Transaksi</p>
+              </div>
+              <div class="col-sm-3 mb-0 text-end">
+                <b class="mr-2">Nota</b> <span id="nota"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-header">
+                    Produk
+                  </div>
+                  <div class="card-body" style="overflow-y: scroll; height: 300px">
+                    <ul class="list-group">
+
+                    <?php foreach ($data as $produk) : ?>
+                      <label for="<?= $produk['kode_produk'] ?>">
+                        <input type="radio" name="produk" id="<?= $produk['kode_produk'] ?>" class="card-input-element" value="<?= $produk['kode_produk'] ?>">
+                        <div class="list-group-item card-input">
+                          <?= $produk['nama_produk'] ?>
+                        </div>
+                      </label>
+                    <?php endforeach; ?>
+                      
+
+                    </ul>
+                  </div>
+                  <div class="card-footer">
+                    <div class="input-group">
+                      <input type="number" class="form-control col-sm-6" placeholder="Jumlah" id="jumlah" onkeyup="checkEmpty()">
+                      <button id="tambah" class="btn btn-primary" onclick="checkStok()" disabled>Tambah</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 d-flex justify-content-end text-right">
+                <table class="table" id="transaksi">
+                  <thead>
+                    <tr>
+                      <th>Barcode</th>
+                      <th>Nama</th>
+                      <th>Harga</th>
+                      <th>Jumlah</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-end">
+            <p id="total" style="font-size: 40px; line-height: 1" class="text-success">0</p>
+            <button id="bayar" class="btn btn-primary" data-toggle="modal" data-target="#modal" disabled>Bayar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
   </div>
@@ -68,6 +152,7 @@ include '../include/include.php';
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <script src="../js/transaksi.js"></script>
   <script>
     const header = document.querySelector('header.header');
 
