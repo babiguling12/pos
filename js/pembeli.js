@@ -1,7 +1,7 @@
 DataTable.type("num", "className", "");
 const tabel = $("#tabelpembeli").DataTable({
-  responsive: !0,
-  scrollX: !0,
+  responsive: true,
+  scrollX: true,
   ajax: { url: "../process/tabel/pembeli.php", dataSrc: "" },
   columnDefs: [{ searcable: false, orderable: false, targets: [0, 5] }],
   order: [[1, "asc"]],
@@ -124,9 +124,9 @@ $("#formpembeli").validate({
     nohp: "Nomor HP tidak boleh kosong.",
   },
   submitHandler: () => {
-    $('.modal-footer button[type="submit"]').html() == "Tambah"
-      ? tambahData()
-      : editData();
+    $('.modal-footer button[type="submit"]').html() == "Edit"
+      ? editData()
+      : tambahData();
   },
 });
 

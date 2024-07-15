@@ -7,9 +7,7 @@ if(isset($_POST['pembeli'])) tambahpembeli($_POST);
 
 if(isset($_POST['tambahpengguna'])) tambahpengguna($_POST);
 
-if(isset($_POST['tambahproduk'])) tambahproduk($_POST);
-
-
+if(isset($_POST['transaksi'])) tambahtransaksi($_POST);
 
 
 
@@ -54,5 +52,29 @@ function tambahpengguna($data) {
         header("Location: ../public/pengguna.php");
     } else {
         header("Location: ../public/pengguna.php?err=1");
+    }
+}
+
+function tambahtransaksi($data) {
+    global $conn;
+    $username = $_SESSION['username'];
+
+    $qty = implode(',', $data['qty']);
+    $barcode = implode(',', $data['barcode']);
+    $data['idpembeli'] ? $idpembeli = $data['idpembeli'] : $idpembeli = 0;
+    $idpengguna = implode('', mysqli_fetch_assoc(mysqli_query($conn, "SELECT id_pengguna FROM pengguna WHERE user_name = '$username'")));
+    $jumlahuang = $data['jumlahuang'];
+    $total = $data['total'];
+
+
+    $query = "INSERT INTO membeli VALUES (NULL, CURRENT_TIMESTAMP, $idpengguna, $idpembeli)";
+    mysqli_query($conn, $query);
+    $idtransaksi = mysqli_insert_id($conn);
+
+    $query = "INSERT INTO beli_detail VALUES (NULL, $idtransaksi, '$barcode', $jumlahuang, '$qty', $total)";
+    mysqli_query($conn, $query);
+
+    if(!mysqli_errno($conn)) {
+        echo json_encode($idtransaksi);
     }
 }

@@ -35,13 +35,24 @@ include '../include/include.php';
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
   <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
   <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
   <style>
+    .card-input {
+      margin: 4px 0 4px 0;
+      padding: 0.75rem 1rem;
+      background-color: #FFFFFF08 !important;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.375rem;
+    }
+
     .card-input-element {
       display: none;
     }
@@ -50,7 +61,7 @@ include '../include/include.php';
       cursor: pointer;
     }
 
-    .card-input-element:checked + .card-input {
+    .card-input-element:checked+.card-input {
       border: 1px solid #3d933f;
     }
   </style>
@@ -58,6 +69,7 @@ include '../include/include.php';
 
 <?php
 $data = (mysqli_query($conn, "SELECT * FROM produk"));
+$datapembeli = mysqli_query($conn, "SELECT id_member, nama_member FROM pembeli");
 ?>
 
 <body>
@@ -77,13 +89,8 @@ $data = (mysqli_query($conn, "SELECT * FROM produk"));
       <div class="container-lg px-4">
         <div class="card mb-4">
           <div class="card-header">
-            <div class="row">
-              <div class="col">
-                <p class="h5">Transaksi</p>
-              </div>
-              <div class="col-sm-3 mb-0 text-end">
-                <b class="mr-2">Nota</b> <span id="nota"></span>
-              </div>
+            <div class="col">
+              <p class="h5">Transaksi</p>
             </div>
           </div>
           <div class="card-body">
@@ -94,30 +101,29 @@ $data = (mysqli_query($conn, "SELECT * FROM produk"));
                     Produk
                   </div>
                   <div class="card-body" style="overflow-y: scroll; height: 300px">
-                    <ul class="list-group">
+                    <ul class="sidebar-nav">
 
-                    <?php foreach ($data as $produk) : ?>
-                      <label for="<?= $produk['kode_produk'] ?>">
-                        <input type="radio" name="produk" id="<?= $produk['kode_produk'] ?>" class="card-input-element" value="<?= $produk['kode_produk'] ?>">
-                        <div class="list-group-item card-input">
-                          <?= $produk['nama_produk'] ?>
-                        </div>
-                      </label>
-                    <?php endforeach; ?>
-                      
+                      <?php foreach ($data as $produk) : ?>
+                        <label for="<?= $produk['kode_produk'] ?>">
+                          <input type="radio" name="produk" id="<?= $produk['kode_produk'] ?>" class="card-input-element" value="<?= $produk['kode_produk'] ?>">
+                          <div class="card-input">
+                            <?= $produk['nama_produk'] ?>
+                          </div>
+                        </label>
+                      <?php endforeach; ?>
 
                     </ul>
                   </div>
                   <div class="card-footer">
                     <div class="input-group">
-                      <input type="number" class="form-control col-sm-6" placeholder="Jumlah" id="jumlah" onkeyup="checkEmpty()">
-                      <button id="tambah" class="btn btn-primary" onclick="checkStok()" disabled>Tambah</button>
+                      <input type="number" class="form-control col-sm-6" placeholder="Jumlah" id="jumlah" onkeyup="cekJumlah()" >
+                      <button id="tambah" class="btn btn-primary" onclick="tambah()" disabled>Tambah</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6 d-flex justify-content-end text-right">
-                <table class="table" id="transaksi">
+              <div class="col-sm-6">
+                <table class="table w-100" id="tabeltransaksi">
                   <thead>
                     <tr>
                       <th>Barcode</th>
@@ -127,15 +133,34 @@ $data = (mysqli_query($conn, "SELECT * FROM produk"));
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                  </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="card-footer text-end">
-            <p id="total" style="font-size: 40px; line-height: 1" class="text-success">0</p>
-            <button id="bayar" class="btn btn-primary" data-toggle="modal" data-target="#modal" disabled>Bayar</button>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <label for="pembeli" class="input-group-text">Pembeli</label>
+                  <select class="form-select" name="pembeli" id="pembeli">
+                    <option value="" selected>non-Member</option>
+                    <?php foreach($datapembeli as $pembeli) : ?>
+                      <option value="<?= $pembeli['id_member'] ?>"><?= $pembeli['nama_member'] ?></option>
+                      <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label class="input-group-text" for="jumlahuang">Jumlah Uang</label>
+                  <input type="text" class="form-control" placeholder="Jumlah Uang" name="jumlahuang" id="jumlahuang" onkeyup="kembalian()">
+                  <label class="input-group-text">Kembalian</label>
+                  <label class="input-group-text" id="kembalian" style="min-width: 10em;">0</label>
+                </div>
+              </div>
+              <div class="col-sm-3 text-end">
+                <p id="total" style="font-size: 40px; line-height: 1" class="text-success">0</p>
+                <button id="bayar" class="btn btn-primary" onclick="transaksi()" disabled>Bayar</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
