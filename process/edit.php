@@ -4,7 +4,7 @@ include '../include/include.php';
 
 if(isset($_POST['pembeli'])) editpembeli($_POST);
 
-if(isset($_POST['editpengguna'])) editpengguna($_POST);
+if(isset($_POST['pengguna'])) editpengguna($_POST);
 
 
 
@@ -47,8 +47,6 @@ function editpengguna($data) {
     mysqli_query($conn, $query);
 
     if(!mysqli_errno($conn)) {
-        header("Location: ../public/pengguna.php");
-    } else {
-        header("Location: ../public/pengguna.php?err=1");
+        echo json_encode('success');
     }
 }

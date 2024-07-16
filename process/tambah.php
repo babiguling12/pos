@@ -5,7 +5,7 @@ include '../include/include.php';
 
 if(isset($_POST['pembeli'])) tambahpembeli($_POST);
 
-if(isset($_POST['tambahpengguna'])) tambahpengguna($_POST);
+if(isset($_POST['pengguna'])) tambahpengguna($_POST);
 
 if(isset($_POST['transaksi'])) tambahtransaksi($_POST);
 
@@ -49,9 +49,7 @@ function tambahpengguna($data) {
     mysqli_query($conn, $query);
 
     if(!mysqli_errno($conn)) {
-        header("Location: ../public/pengguna.php");
-    } else {
-        header("Location: ../public/pengguna.php?err=1");
+        echo json_encode('success');
     }
 }
 
