@@ -165,7 +165,7 @@ include '../include/include.php';
             <div class="d-flex justify-content-between">
               <div>
                 <h4 class="card-title mb-0">Penjualan Bulan Ini</h4>
-                <div class="small text-body-secondary">Juli</div>
+                <div class="small text-body-secondary"><?= date('F') ?></div>
               </div>
             </div>
             <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">

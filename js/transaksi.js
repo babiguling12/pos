@@ -91,7 +91,14 @@ function kembalian() {
 }
 
 function transaksi() {
-  let data = tabel.rows().data(),
+  Swal.fire({
+    title: "Konfirmasi Pembayaran",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Konfirmasi",
+  }).then((r) => {
+    if(r.isConfirmed) {
+      let data = tabel.rows().data(),
     qty = [],
     barcode = [];
   $.each(data, (index, value) => {
@@ -136,4 +143,8 @@ function transaksi() {
       console.log(response);
     },
   });
+    }
+  })
+
+  
 }
