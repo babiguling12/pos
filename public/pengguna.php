@@ -121,7 +121,7 @@ include '../include/include.php';
               </div>
               <div class="mb-3">
                 <label for="nohp_pengguna" class="form-label">No HP</label>
-                <input type="text" class="form-control" id="nohppengguna" name="nohp_pengguna"
+                <input type="number" class="form-control" id="nohppengguna" name="nohp_pengguna"
                   placeholder="Masukan No HP..." required>
               </div>
               <div class="modal-footer">
@@ -158,11 +158,6 @@ include '../include/include.php';
         header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
       }
     });
-  </script>
-  <script>
-
-  </script>
-  <script>
   </script>
 
 </body>

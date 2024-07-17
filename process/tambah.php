@@ -7,6 +7,8 @@ if(isset($_POST['pembeli'])) tambahpembeli($_POST);
 
 if(isset($_POST['pengguna'])) tambahpengguna($_POST);
 
+if(isset($_POST['produk'])) tambahproduk($_POST);
+
 if(isset($_POST['transaksi'])) tambahtransaksi($_POST);
 
 
@@ -52,6 +54,26 @@ function tambahpengguna($data) {
         echo json_encode('success');
     }
 }
+
+function tambahproduk($data) {
+    global $conn;
+
+    $kodeproduk = htmlspecialchars($data['kode_produk']);
+    $namaproduk = htmlspecialchars($data['nama_produk']);
+    $satuan = htmlspecialchars($data['satuan']);
+    $hargajual  = htmlspecialchars($data['harga_jual']);
+    
+
+    $query  = "INSERT INTO produk VALUES ('$kodeproduk', '$namaproduk', '$satuan', '$hargajual')";
+
+    mysqli_query($conn, $query);
+
+    if(!mysqli_errno($conn)) {
+        echo json_encode('success');
+    }
+}
+
+
 
 function tambahtransaksi($data) {
     global $conn;

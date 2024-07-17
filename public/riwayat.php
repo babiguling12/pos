@@ -77,8 +77,6 @@ include '../include/include.php';
       }
     });
   </script>
-  <script>
-  </script>
 
 </body>
 

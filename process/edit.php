@@ -6,6 +6,8 @@ if(isset($_POST['pembeli'])) editpembeli($_POST);
 
 if(isset($_POST['pengguna'])) editpengguna($_POST);
 
+if(isset($_POST['produk'])) editproduk($_POST);
+
 
 
 
@@ -43,6 +45,22 @@ function editpengguna($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     $query  = "UPDATE pengguna SET user_name = '$username', password = '$password', nama_pengguna = '$nama', jabatan = '$jabatan', nohp_pengguna = '$nohp' WHERE id_pengguna = $id";
+
+    mysqli_query($conn, $query);
+
+    if(!mysqli_errno($conn)) {
+        echo json_encode('success');
+    }
+}
+
+function editproduk($data) {
+    global $conn;
+    $kodeproduk = htmlspecialchars($data['kode_produk']);
+    $namaproduk = htmlspecialchars($data['nama_produk']);
+    $satuan = htmlspecialchars($data['satuan']);
+    $hargajual  = htmlspecialchars($data['harga_jual']);
+
+    $query  = "UPDATE produk SET kode_produk = '$kodeproduk', nama_produk = '$namaproduk', satuan = '$satuan', harga_jual = '$hargajual' WHERE kode_produk = $kodeproduk";
 
     mysqli_query($conn, $query);
 
