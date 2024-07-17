@@ -74,7 +74,6 @@ function tambahproduk($data) {
 }
 
 
-
 function tambahtransaksi($data) {
     global $conn;
     $username = $_SESSION['username'];
