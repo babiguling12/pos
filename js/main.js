@@ -267,92 +267,7 @@ const cardChart4 = new Chart(document.getElementById("card-chart4"), {
   },
 });
 const mainChart = new Chart(document.getElementById("main-chart"), {
-  type: "bar",
-  data: {
-    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-    datasets: [
-      {
-        label: "Bulan ini",
-        backgroundColor: `rgba(${coreui.Utils.getStyle("--cui-info-rgb")}, .1)`,
-        borderColor: coreui.Utils.getStyle("--cui-info"),
-        pointHoverBackgroundColor: "#fff",
-        borderWidth: 2,
-        data: [
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(0, 50),
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-        ],
-        fill: true,
-      },
-      {
-        label: "Bulan lalu",
-        borderColor: coreui.Utils.getStyle("--cui-success"),
-        pointHoverBackgroundColor: "#fff",
-        borderWidth: 2,
-        data: [
-          random(0, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 500),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-          random(50, 200),
-        ],
-      },
-    ],
-  },
+  type: "line",
   options: {
     maintainAspectRatio: false,
     plugins: {
@@ -411,4 +326,39 @@ const mainChart = new Chart(document.getElementById("main-chart"), {
     },
   },
 });
+
+$.ajax({
+  url: '../process/chart.php',
+  type: 'post',
+  dataType: 'json',
+  data: {getTransaksiBulanIni: true},
+  success: response => {
+    console.log(response);
+    mainChart.data = {
+      datasets: [
+        {
+          label: "Bulan ini",
+          backgroundColor: `rgba(${coreui.Utils.getStyle("--cui-info-rgb")}, .1)`,
+          borderColor: coreui.Utils.getStyle("--cui-info"),
+          pointHoverBackgroundColor: "#fff",
+          borderWidth: 1,
+          data: response.bulanini,
+          fill: true,
+        },
+        {
+          label: "Bulan lalu",
+          borderColor: coreui.Utils.getStyle("--cui-success"),
+          pointHoverBackgroundColor: "#fff",
+          borderWidth: 1,
+          data: response.bulanlalu,
+        },
+      ],
+    }
+    mainChart.update();
+  },
+  error: response => {
+    console.log(response);
+  }
+})
+
 //# sourceMappingURL=main.js.map
