@@ -50,36 +50,37 @@ function editData() {
 }
 
 function hapus(id) {
-    Swal.fire({
-        title: "Hapus",
-        text: "Hapus data ini?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: 'Hapus',
-        cancelButtonText: 'Batal'
-      }).then((r) => {
-        if(r.isConfirmed) {
-            $.ajax({
-                url: '../process/hapus.php',
-                type: 'post',
-                dataType: 'json',
-                data: { produk: id },
-                success: () => {
-                    Swal.fire("Sukses", "Sukses Menghapus Data", "success");
-                    tabel.ajax.reload();
-                },
-                error: (response) => {
-                    console.log(response);
-                }
-            })
-        }
-      })
+  Swal.fire({
+    title: "Hapus",
+    text: "Hapus data ini?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Hapus",
+    cancelButtonText: "Batal",
+  }).then((r) => {
+    if (r.isConfirmed) {
+      $.ajax({
+        url: "../process/hapus.php",
+        type: "post",
+        dataType: "json",
+        data: { produk: id },
+        success: () => {
+          Swal.fire("Sukses", "Sukses Menghapus Data", "success");
+          tabel.ajax.reload();
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+    }
+  });
 }
 
 $("#btntambah").click(function () {
   $(".modal-title").html("Tambah Data"),
-    $('.modal button[type="submit"]').html("Tambah");
-});
+    $('.modal button[type="submit"]').html("Tambah"),
+    $("#kodeproduk").removeAttr("disabled")
+  });
 
 function edit(id) {
   $.ajax({
@@ -89,6 +90,7 @@ function edit(id) {
     data: { getProdukById: id },
     success: (response) => {
       $("#kodeproduk").val(response.kode_produk),
+        $("#kodeproduk").attr("disabled", ""),
         $("#namaproduk").val(response.nama_produk),
         $("#satuan").val(response.satuan),
         $("#hargajual").val(response.harga_jual),
