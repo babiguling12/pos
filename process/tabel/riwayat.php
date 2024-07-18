@@ -26,6 +26,14 @@ $query = "SELECT
 
 $result = (mysqli_query($conn, $query));
 
+$qty = explode(',', $result['qty']);
+
+$produk = explode(',', $result['kode_produk']);
+for ($i = 0; $i < count($produk); $i++) {
+    $produk[$i] = "'" . $produk[$i] . "'";
+}
+$produk = mysqli_fetch_all(mysqli_query($conn, "SELECT nama_produk, harga_jual FROM produk WHERE kode_produk IN (" . implode(',', $produk) . ")"), MYSQLI_ASSOC);
+
 foreach ($result as $riwayat) {
     $data[] = array(
         'num' => 0,
