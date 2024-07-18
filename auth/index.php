@@ -66,18 +66,25 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-body-secondary">Sign In to your account</p>
+                
+                <?php if (isset($_SESSION['error'])): ?>
+                  <div class="alert alert-danger">
+                    <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                  </div>
+                <?php endif; ?>
+                
                 <form action="auth.php" method="post">
                   <div class="input-group mb-3"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                       </svg></span>
-                    <input class="form-control" type="text" name="username" placeholder="Username">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required>
                   </div>
                   <div class="input-group mb-4"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="../vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                       </svg></span>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
                   </div>
                   <div class="row">
                     <div class="col-6">
@@ -107,9 +114,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
       }
     });
   </script>
-  <script>
-  </script>
-
 </body>
+
 
 </html>
