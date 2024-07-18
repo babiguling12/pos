@@ -71,11 +71,10 @@ include '../include/include.php';
                     <th>#</th>
                     <th>Tanggal Transaksi</th>
                     <th>Nama Pembeli</th>
-                    <th>Kode Produk</th>
-                    <th>Nama Produk</th>
+                    <th>Produk</th>
                     <th>Jumlah Uang</th>
-                    <th>QTY</th>
                     <th>Total Harga</th>
+                    <th>Kasir</th>
                     <th></th>
                   </tr>
                 </thead>
