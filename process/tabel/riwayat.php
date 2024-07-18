@@ -7,7 +7,7 @@ $query = "SELECT
             membeli.id_transaksi,
             membeli.tgl_transaksi, 
             pembeli.nama_member, 
-            pengguna.user_name, 
+            pengguna.nama_pengguna, 
             beli_detail.kode_produk, 
             beli_detail.jumlah_uang, 
             beli_detail.qty,
@@ -52,9 +52,9 @@ foreach ($result as $riwayat) {
     'tgl_transaksi' => $riwayat['tgl_transaksi'],
     'nama_member' => $riwayat['nama_member'] == NULL ? 'Not Member' : $riwayat['nama_member'],
     'produk' => '<table width="100%">' . implode($produk) . '</table>',
-    'jumlah_uang' => $riwayat['jumlah_uang'],
-    'total_harga' => $riwayat['total_harga'],
-    'kasir' => $riwayat['user_name'],
+    'jumlah_uang' => 'Rp ' . number_format($riwayat['jumlah_uang'], 0, ',', '.'),
+    'total_harga' => 'Rp ' . number_format($riwayat['total_harga'], 0, ',', '.'),
+    'kasir' => $riwayat['nama_pengguna'],
     'action' => '<button class="btn btn-sm btn-danger" onclick="hapus(' ."'". $riwayat['id_transaksi'] ."'". ')"><i class="icon icon-l cil-trash"></i></button>
                  <a class="btn btn-sm btn-info" href="print.php?id=' . $riwayat['id_transaksi'] . '""><i class="icon icon-l cil-print"></i></a>',
   );

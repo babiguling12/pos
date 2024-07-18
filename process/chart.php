@@ -9,6 +9,7 @@ if (isset($_POST['getTransaksiBulanIni'])) getTransaksiBulanIni();
 
 
 
+
 function getTransaksiBulanIni()
 {
     global $conn;
@@ -23,7 +24,7 @@ function getTransaksiBulanIni()
     foreach ($result as $res) {
         $tanggal = explode(' ', $res['tgl_transaksi']);
         $tanggal = explode('-', $tanggal[0]);
-        $tanggal = (int)$tanggal[2];
+        $tanggal = (int) $tanggal[2];
         for ($i = 1; $i <= date('t'); $i++) {
             if ($tanggal === $i) {
                 $data['bulanini'][$i]++;
@@ -41,7 +42,7 @@ function getTransaksiBulanIni()
     foreach ($result as $res) {
         $tanggal = explode(' ', $res['tgl_transaksi']);
         $tanggal = explode('-', $tanggal[0]);
-        $tanggal = (int)$tanggal[2];
+        $tanggal = (int) $tanggal[2];
         for ($i = 1; $i <= date('t', strtotime(' -1 months')); $i++) {
             if ($tanggal === $i) {
                 $data['bulanlalu'][$i]++;
@@ -51,3 +52,5 @@ function getTransaksiBulanIni()
 
     echo json_encode($data);
 }
+
+
