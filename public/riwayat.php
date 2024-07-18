@@ -35,11 +35,16 @@ include '../include/include.php';
   <link rel="stylesheet" href="../vendors/simplebar/css/simplebar.css">
   <link rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/vendors/simplebar.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
   <!-- Main styles for this application-->
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
   <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
 </head>
 
@@ -55,12 +60,38 @@ include '../include/include.php';
     include '../components/header.php';
     ?>
 
-
-
+    <div class="body flex-grow-1">
+      <div class="container-lg px-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="tab-pane p-3 active preview" role="tabpanel">
+              <table class="table w-100 table-hover text-start" id="tabelriwayat">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tanggal Transaksi</th>
+                    <th>Nama Pembeli</th>
+                    <th>Kode Produk</th>
+                    <th>Nama Produk</th>
+                    <th>Jumlah Uang</th>
+                    <th>QTY</th>
+                    <th>Total Harga</th>
+                    <th></th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table end -->
 
   </div>
   <footer class="footer px-4">
-    <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024 creativeLabs.</div>
+    <div><a href="https://coreui.io">CoreUI </a><a
+        href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024
+      creativeLabs.</div>
     <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
   </footer>
   </div>
@@ -68,6 +99,7 @@ include '../include/include.php';
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
+  <script src="../js/riwayat.js"></script>
   <script>
     const header = document.querySelector('header.header');
 

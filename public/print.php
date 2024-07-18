@@ -33,7 +33,7 @@ $produk = mysqli_fetch_all(mysqli_query($conn, "SELECT nama_produk, harga_jual F
 <body>
     <div style="width: 400px; margin: auto" id="print">
         <center>
-            <h4>NAMATOKO</h4>
+            <h4>TOKO STORE</h4>
         </center>
         <br><br>
         <table width="100%">

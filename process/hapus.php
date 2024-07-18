@@ -8,6 +8,8 @@ if(isset($_POST['pengguna'])) hapuspengguna($_POST['pengguna']);
 
 if(isset($_POST['produk'])) hapusproduk($_POST['produk']);
 
+if(isset($_POST['riwayat'])) hapusriwayat($_POST['riwayat']);
+
 
 
 
@@ -53,3 +55,16 @@ function hapusproduk($id) {
         echo json_encode('success');
     }
 }
+
+function hapusriwayat($id) {
+    global $conn;
+
+    $query  = "DELETE FROM riwayat WHERE id_detail = $id";
+
+    mysqli_query($conn, $query);
+
+    if(!mysqli_errno($conn)) {
+        echo json_encode('success');
+    }
+}
+
