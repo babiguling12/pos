@@ -5,8 +5,8 @@ Product : Sistem POS (Kasir) Sederhana
 Dosen  : Edi Web Dasar
 
 Anggota Kelompok : 
-- Gustu
-- Bintang
-- Dwik
+- King Gustos
+- Bintang Starlight
+- Dwiksu
 -----------------------------------------
 ASTUNGKARA LANCAR DAN NILAI NYA BAGUS
