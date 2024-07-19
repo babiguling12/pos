@@ -87,13 +87,11 @@ include '../include/include.php';
     <!-- table end -->
 
   </div>
-  <footer class="footer px-4">
-    <div><a href="https://coreui.io">CoreUI </a><a
-        href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024
-      creativeLabs.</div>
-    <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
-  </footer>
-  </div>
+  
+  <?php
+  include "../components/footer.php";
+  ?>
+  
   <!-- CoreUI and necessary plugins-->
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -37,7 +37,8 @@ include '../include/include.php';
   <link href="../css/style.css" rel="stylesheet">
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
@@ -62,7 +63,8 @@ include '../include/include.php';
     <div class="body flex-grow-1">
       <div class="container-lg px-4">
         <div class="card mb-4">
-          <div class="card-header"><button class="btn btn-primary" type="button" id="btntambah" data-bs-toggle="modal" data-bs-target="#modal">Tambah Data</button></div>
+          <div class="card-header"><button class="btn btn-primary" type="button" id="btntambah" data-bs-toggle="modal"
+              data-bs-target="#modal">Tambah Data</button></div>
           <div class="card-body">
             <div class="tab-pane p-3 active preview" role="tabpanel">
               <table class="table w-100 table-hover text-start" id="tabelpembeli">
@@ -98,11 +100,13 @@ include '../include/include.php';
               <input type="hidden" id="idmember" name="idmember" readonly>
               <div class="mb-3">
                 <label for="namamember" class="form-label">Nama Member</label>
-                <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun" required>
+                <input type="text" class="form-control" id="namamember" name="namamember" placeholder="Gustu-kun"
+                  required>
               </div>
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control" id="nik" name="nik" placeholder="510*************" maxlength="16">
+                <input type="text" class="form-control" id="nik" name="nik" placeholder="510*************"
+                  maxlength="16">
               </div>
               <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
@@ -124,11 +128,11 @@ include '../include/include.php';
     <!-- Modal Tambah End -->
 
   </div>
-  <footer class="footer px-4">
-    <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024 creativeLabs.</div>
-    <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
-  </footer>
-  </div>
+
+  <?php
+  include "../components/footer.php";
+  ?>
+  
   <!-- CoreUI and necessary plugins-->
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/bootstrap/js/bootstrap.bundle.min.js"></script>

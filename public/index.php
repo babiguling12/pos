@@ -40,9 +40,43 @@ include '../include/chart.php';
 
   <script src="../js/config.js"></script>
   <script src="../js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <link href="../vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
   <link href="../vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
+  <style>
+    .card-background {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-background:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .card-background::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../assets/img/background-pro.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 1;
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -61,7 +95,7 @@ include '../include/chart.php';
       <div class="container-lg px-4">
         <div class="row g-4 mb-4">
           <div class="col-sm-6 col-xl-3">
-            <div class="card text-white bg-primary">
+            <div class="card text-white bg-primary card-background">
               <div class="card-body py-4 d-flex justify-content-between align-items-start">
                 <div>
                   <div>Total Produk</div>
@@ -72,7 +106,7 @@ include '../include/chart.php';
           </div>
           <!-- /.col-->
           <div class="col-sm-6 col-xl-3">
-            <div class="card text-white bg-info">
+            <div class="card text-white bg-info card-background">
               <div class="card-body py-4 d-flex justify-content-between align-items-start">
                 <div>
                   <div>Total Transaksi</div>
@@ -83,7 +117,7 @@ include '../include/chart.php';
           </div>
           <!-- /.col-->
           <div class="col-sm-6 col-xl-3">
-            <div class="card text-white bg-warning">
+            <div class="card text-white bg-warning card-background">
               <div class="card-body py-4 d-flex justify-content-between align-items-start">
                 <div>
                   <div>Pendapatan Bulanan</div>
@@ -94,7 +128,7 @@ include '../include/chart.php';
           </div>
           <!-- /.col-->
           <div class="col-sm-6 col-xl-3">
-            <div class="card text-white bg-danger">
+            <div class="card text-white bg-danger card-background">
               <div class="card-body py-4 d-flex justify-content-between align-items-start">
                 <div>
                   <div>Total Pendapatan</div>
@@ -123,12 +157,11 @@ include '../include/chart.php';
         </div>
       </div>
     </div>
+
+    <?php
+    include "../components/footer.php";
+    ?>
     
-    <footer class="footer px-4">
-      <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/free-bootstrap-admin-template/">Bootstrap Admin Template</a> © 2024 creativeLabs.</div>
-      <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
-    </footer>
-  </div>
   <!-- CoreUI and necessary plugins-->
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
