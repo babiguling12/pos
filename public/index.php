@@ -66,7 +66,7 @@ include '../include/chart.php';
       height: 100%;
       background: url('../assets/img/background-pro.jpg') no-repeat center center;
       background-size: cover;
-      opacity: 0.15;
+      opacity: 0.17;
       z-index: 0;
     }
 
@@ -161,7 +161,7 @@ include '../include/chart.php';
     <?php
     include "../components/footer.php";
     ?>
-    
+
   <!-- CoreUI and necessary plugins-->
   <script src="../vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
   <script src="../vendors/simplebar/js/simplebar.min.js"></script>
