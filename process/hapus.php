@@ -59,7 +59,7 @@ function hapusproduk($id) {
 function hapusriwayat($id) {
     global $conn;
 
-    $query  = "DELETE FROM riwayat WHERE id_detail = $id";
+    $query  = "DELETE FROM beli_detail WHERE id_transaksi = $id";
 
     mysqli_query($conn, $query);
 
