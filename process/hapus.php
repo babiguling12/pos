@@ -47,7 +47,7 @@ function hapuspengguna($id) {
 function hapusproduk($id) {
     global $conn;
 
-    $query  = "DELETE FROM produk WHERE kode_produk = $id";
+    $query  = "DELETE FROM produk WHERE kode_produk = '$id'";
 
     mysqli_query($conn, $query);
 
