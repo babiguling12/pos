@@ -79,7 +79,7 @@ function hapus(id) {
 $("#btntambah").click(function () {
   $(".modal-title").html("Tambah Data"),
     $('.modal button[type="submit"]').html("Tambah"),
-    $("#kodeproduk").removeAttr("disabled")
+    $("#kodeproduk").removeAttr("readonly")
   });
 
 function edit(id) {
@@ -90,7 +90,7 @@ function edit(id) {
     data: { getProdukById: id },
     success: (response) => {
       $("#kodeproduk").val(response.kode_produk),
-        $("#kodeproduk").attr("disabled", ""),
+        $("#kodeproduk").attr("readonly", ""),
         $("#namaproduk").val(response.nama_produk),
         $("#satuan").val(response.satuan),
         $("#hargajual").val(response.harga_jual),

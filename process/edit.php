@@ -60,7 +60,7 @@ function editproduk($data) {
     $satuan = htmlspecialchars($data['satuan']);
     $hargajual  = htmlspecialchars($data['harga_jual']);
 
-    $query  = "UPDATE produk SET kode_produk = '$kodeproduk', nama_produk = '$namaproduk', satuan = '$satuan', harga_jual = '$hargajual' WHERE kode_produk = '$kodeproduk'";
+    $query  = "UPDATE produk SET nama_produk = '$namaproduk', satuan = '$satuan', harga_jual = '$hargajual' WHERE kode_produk = '$kodeproduk'";
 
     mysqli_query($conn, $query);
 
