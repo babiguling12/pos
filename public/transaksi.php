@@ -151,13 +151,15 @@ $datapembeli = mysqli_query($conn, "SELECT id_member, nama_member FROM pembeli")
                 </div>
                 <div class="input-group">
                   <label class="input-group-text" for="jumlahuang">Jumlah Uang</label>
+                  <label class="input-group-text" for="jumlahuang">Rp </label>
                   <input type="text" class="form-control" placeholder="Jumlah Uang" name="jumlahuang" id="jumlahuang" onkeyup="kembalian()">
                   <label class="input-group-text">Kembalian</label>
+                  <label class="input-group-text">Rp </label>
                   <label class="input-group-text" id="kembalian" style="min-width: 10em;">0</label>
                 </div>
               </div>
               <div class="col-sm-3 text-end">
-                <p id="total" style="font-size: 40px; line-height: 1" class="text-success">0</p>
+                <p style="font-size: 40px; line-height: 1" class="text-success">Rp <span id="total">0</span></p>
                 <button id="bayar" class="btn btn-primary" onclick="transaksi()" disabled>Bayar</button>
               </div>
             </div>

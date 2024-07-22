@@ -36,7 +36,7 @@ function tambah() {
           .add([
             barcode,
             namaproduk,
-            harga,
+            'Rp ' + harga,
             jumlah,
             `<button name="${barcode}" class="btn btn-sm btn-danger" onclick="hapus('${barcode}')">Hapus</btn>`,
           ])
