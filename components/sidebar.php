@@ -1,12 +1,8 @@
     <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
       <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
-          <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
-            <use xlink:href="../assets/brand/coreui.svg#full"></use>
-          </svg>
-          <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-            <use xlink:href="../assets/brand/coreui.svg#signet"></use>
-          </svg>
+          <h5 class="text-warning sidebar-brand-full">TOKOSTORE</h5>
+          <img class="sidebar-brand-narrow rounded-circle" src="../assets/img/avatars/10.jpg" alt="logo web" width="32" height="32">
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
       </div>

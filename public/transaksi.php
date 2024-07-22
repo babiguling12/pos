@@ -48,8 +48,8 @@ include '../include/include.php';
     .card-input {
       margin: 4px 0 4px 0;
       padding: 0.75rem 1rem;
-      background-color: #FFFFFF08 !important;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: var(--cui-card-cap-bg) !important;
+      border: 1px solid var(--cui-card-border-color);
       border-radius: 0.375rem;
     }
 
